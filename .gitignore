@@ -1,0 +1,9 @@
+emfriso/libfriso.js
+emfriso/emfriso_files.*
+emfriso/data/
+*.o
+*.so
+src/friso
+src/fmem
+src/tst-friso.c
+*.sw*
