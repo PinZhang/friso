@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <p>Frisco test</p>
+    <span id="status"></span>
+    <br/>
+
+    <input type="button" value="clear log" id="clear_log"/>
+    <br/>
+    <br/>
+
+    <input type="input" value="研究生命起源" id="cn_text" />
+    <input type="button" value="segment" id="segment"/>
+
+
+    <div id="log"></div>
+    <canvas id="canvas" style="display:none;"></canvas>
+
+    <script type="text/javascript">
+    window.addEventListener('load', function() {
+      var head = document.getElementsByTagName('head')[0];
+      var settings = {
+        path: '.'
+      };
+
+      function r() {
+        return '';
+        // return '?' + Math.random();
+      }
+
+      // chewing_files.js and chewing_init.js must be loaded before libchewing.js. 
+      // chewing_files = document.createElement('script');
+      // chewing_files.src = settings.path + '/emfriso_files.js' + r();
+      // head.appendChild(chewing_files);
+
+      chewing_files = document.createElement('script');
+      chewing_files.src = settings.path + '/jsfriso_init.js' + r();
+      head.appendChild(chewing_files);
+
+      chewing_files = document.createElement('script');
+      chewing_files.src = settings.path + '/libfriso.js' + r();
+      head.appendChild(chewing_files);
+    });
+    </script>
+
+</body>
+</html>
