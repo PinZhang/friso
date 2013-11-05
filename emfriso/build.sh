@@ -3,14 +3,6 @@
 EMSCRIPTEN_HOME=~/work/opensource/emscripten
 echo "$EMSCRIPTEN_HOME"
 
-echo "Build libfriso.js"
-emcc ../src/fmem.c ../src/friso.c ../src/friso_array.c ../src/friso_hash.c \
-     ../src/friso_lexicon.c ../src/friso_link.c ../src/friso_string.c ../src/friso_wrapper.c \
-     -O2 --closure 0 -g3 -o libfriso.js -s LINKABLE=1 \
-     --pre-js emfriso_files.js \
-     -s ASM_JS=1 -s TOTAL_STACK=131072 -s TOTAL_MEMORY=67108864 -s EXPORTED_FUNCTIONS="['_fr_seg', \
-     '_fr_next', '_fr_free']"
-
 mkdir data
 
 echo "cp dict file"
@@ -42,4 +34,13 @@ python $EMSCRIPTEN_HOME/tools/file_packager.py emfriso_files.data \
        data/lex-sname.lex \
        data/lex-units.lex \
        --js-output=emfriso_files.js
+
+echo "Build libfriso.js"
+emcc ../src/fmem.c ../src/friso.c ../src/friso_array.c ../src/friso_hash.c \
+     ../src/friso_lexicon.c ../src/friso_link.c ../src/friso_string.c ../src/friso_wrapper.c \
+     -O2 --closure 0 -g3 -o libfriso.js -s LINKABLE=1 \
+     --pre-js emfriso_files.js \
+     -s ASM_JS=0 -s TOTAL_STACK=131072 -s TOTAL_MEMORY=67108864 -s EXPORTED_FUNCTIONS="['_fr_seg', \
+     '_fr_next', '_fr_free']"
+
 
